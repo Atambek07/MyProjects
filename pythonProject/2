@@ -1,0 +1,34 @@
+def find_max_value(input_str):
+    # Разбиваем строку на количество вставленных букв и слово
+    n, word = input_str.split()
+    n = int(n)
+
+    # Первоначальные слова от 1 до 10
+    original_words = ["BIR", "EKI", "UECH", "TOERT", "BESH", "ALTY", "JETI", "SEGIZ", "TOGUZ", "ON"]
+
+    # Генерируем все возможные комбинации вставленных букв
+    for i in range(26 ** n):
+        # Переводим индекс в систему счисления с основанием 26
+        current_combination = ""
+        index = i
+        for j in range(n):
+            current_combination += chr(ord('A') + index % 26)
+            index //= 26
+
+        # Составляем слово с вставленными буквами
+        new_word = list(word)
+        for j in range(n):
+            new_word[j] = current_combination[n - 1 - j]
+
+        new_word = ''.join(new_word)
+
+        # Проверяем, соответствует ли новое слово изначальным
+        if new_word in original_words:
+            return original_words.index(new_word) + 1  # Возвращаем соответствующее число
+
+    return 0  # Если не удалось получить изначальное слово
+
+# Пример использования
+input_str = input("Введите данные: ")
+result = find_max_value(input_str)
+print(result)

@@ -1,0 +1,7 @@
+a, b, c, d = map(int, input().split())
+s = min(a, b)
+s1 = min(c, d)
+s3 = max(a, b)
+s4 = max(c, d)
+s5 = max(s3, s4)
+print(2 * (s + s1 + s5))
